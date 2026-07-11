@@ -1,4 +1,4 @@
-# Contributing to zylos-infra-gitops
+# Contributing to zylos-kafka-connect-image
 
 ## Branching
 
