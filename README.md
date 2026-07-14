@@ -1,1 +1,1 @@
-# zylos-kafka-connect-image
+# zylos-infra-images

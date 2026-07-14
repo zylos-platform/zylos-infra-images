@@ -1,0 +1,28 @@
+name: Zylos Catalog Toolbox Pipeline
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'zylos-toolbox/**'
+      - '.github/workflows/zylos-catalog-toolbox.yaml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'zylos-toolbox/**'
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+  attestations: write
+
+jobs:
+  call-reusable-workflow:
+    uses: ./.github/workflows/build-push-gitops.yaml
+    with:
+      image_name: 'zylos-toolbox'
+      build_context: './zylos-toolbox'
+      gitops_path: 'components/services/zylos-service-catalog/base'
+    secrets:
+      GITOPS_REPO_PAT: ${{ secrets.GITOPS_REPO_PAT }}
