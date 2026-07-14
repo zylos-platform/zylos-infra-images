@@ -1,0 +1,28 @@
+name: Kafka Connect Pipeline
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'kafka-connect/**'
+      - '.github/workflows/kafka-connect.yaml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'kafka-connect/**'
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+  attestations: write
+
+jobs:
+  call-reusable-workflow:
+    uses: ./.github/workflows/build-push-gitops.yaml
+    with:
+      image_name: 'zylos-kafka-connect'
+      build_context: './kafka-connect'
+      gitops_path: 'components/platform/kafka-connect/base'
+    secrets:
+      GITOPS_REPO_PAT: ${{ secrets.GITOPS_REPO_PAT }}

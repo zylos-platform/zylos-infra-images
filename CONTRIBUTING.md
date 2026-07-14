@@ -1,4 +1,4 @@
-# Contributing to zylos-kafka-connect-image
+# Contributing to zylos-infra-images
 
 ## Branching
 
